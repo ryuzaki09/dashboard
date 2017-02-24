@@ -1,0 +1,17 @@
+version 1.2.0
+ - updated styles and added effects on the dashboard.
+ - calendar events are now retreived via ajax
+
+version 1.1.0
+ - added plex content.
+ - plex and weather is updating via ajax at different intervals.
+
+version 1.0.0
+ - dashboard showing current time and updated every minute. 
+ - photos are retreived from network location, shown in the view and scrolls through each image.
+ - styles have been updated.
+ - access and refresh token are saved and retrieved from DB rather than session which was unreliable.
+ - added memcache
+
+version 0.1.0
+ - openweather api and google calendar api integrated. showing weather and calendar events
