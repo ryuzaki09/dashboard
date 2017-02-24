@@ -5,11 +5,11 @@ class BaseModel {
     public $model;
     private $where;
     private $limit;
-	private $from;
+    private $from;
     private $join;
     private $order;
-	private $select = "SELECT *";
-	private $custom_query = null;
+    private $select = "SELECT *";
+    private $custom_query = null;
     private $pdo;
 
     public function __construct(){
@@ -46,7 +46,7 @@ class BaseModel {
     public function where($where=array()){
         // $this->where = "WHERE ".$where;	
         if(empty($where))
-			throw new Exception("Where clause is empty");
+            throw new Exception("Where clause is empty");
 
 		$i = 1;
 		$z = 0;
@@ -138,15 +138,15 @@ class BaseModel {
     }
 
 
-	public function query($query){
+    public function query($query){
 
-		if(!is_string($query))
-			throw new Exception("query is not valid: ".$query);
+        if(!is_string($query))
+            throw new Exception("query is not valid: ".$query);
 
-		$this->custom_query = true;
-		$this->query = $query;
+        $this->custom_query = true;
+        $this->query = $query;
 
-	}
+    }
 
     public function fetchAll(){
         return $this->pdo->fetchAll();
