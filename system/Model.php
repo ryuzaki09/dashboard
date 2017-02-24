@@ -48,30 +48,30 @@ class BaseModel {
         if(empty($where))
             throw new Exception("Where clause is empty");
 
-		$i = 1;
-		$z = 0;
+        $i = 1;
+        $z = 0;
 
 		//total where clause amount
-		$where_count = count($where);
+        $where_count = count($where);
 
-		foreach($where AS $whereas => $value):
+        foreach($where AS $whereas => $value):
 		// while($z < $where_count):
-			if($i == $where_count)
-				$this->where .= $whereas." =? ";
-			else
-				$this->where .= $whereas." =? AND ";
+            if($i == $where_count)
+                $this->where .= $whereas." =? ";
+            else
+                $this->where .= $whereas." =? AND ";
 
-			$this->bind_param[$i] = $value;
-			$i++;
-			$z++;
+            $this->bind_param[$i] = $value;
+            $i++;
+            $z++;
 		// endwhile;
-		endforeach;
+        endforeach;
 
     }
 
-	public function from($table){
-		if(is_string($table))
-			$this->from = $table;
+    public function from($table){
+        if(is_string($table))
+            $this->from = $table;
 	}
 
     public function limit($limit){
@@ -91,12 +91,12 @@ class BaseModel {
 
     public function execute(){
 
-		if(is_null($this->custom_query)){
-			$this->query = $this->select;
+        if(is_null($this->custom_query)){
+            $this->query = $this->select;
 
             if(!$this->from)
                 throw new Exception("DB: Have not selected a table");
-            
+                
 
             $this->query .= " FROM ".$this->from;
 
@@ -108,11 +108,11 @@ class BaseModel {
 
             if($this->order)
                 $this->query .= " ORDER BY ".$this->order;
-        
-            // $db = $this->pdo->prepare($this->query);
+            
+                // $db = $this->pdo->prepare($this->query);
             $this->pdo = $this->db->pdo->prepare($this->query);
 
-            //bind the values from where clause
+                //bind the values from where clause
             if(!empty($this->bind_param)){
                 foreach($this->bind_param AS $key => $params):
                     if(is_numeric($params)){
@@ -125,7 +125,7 @@ class BaseModel {
 
             }
 
-            // $db->execute();
+                // $db->execute();
             $this->pdo->execute();
             //custom query
         } else {
